@@ -22,7 +22,7 @@ const directions = [
 
 export default function AboutSection() {
     return (
-        <section id="about" className="w-full min-h-screen bg-white flex flex-col items-center justify-center">
+        <section id="about" className="w-full min-h-screen border-3 border-black bg-white flex flex-col items-center justify-center">
             <motion.div
                 className="w-full h-[50vh] bg-white flex"
                 variants={container}
@@ -44,7 +44,7 @@ export default function AboutSection() {
                         speed={0.1}
                         particleBaseSize={100}
                         moveParticlesOnHover={true}
-                        alphaParticles={false}
+                        alphaParticles={true}
                         disableRotation={false}
                         className="absolute inset-0 z-0"
                     />

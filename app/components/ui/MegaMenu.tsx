@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import { PinContainer } from "@/app/components/ui/3d-pin";
 import dynamic from "next/dynamic";
 
@@ -49,7 +50,7 @@ const projects = [
     {
         title: "BrightR",
         status: "En cours",
-        description: "Créateur de protflolio en ligne automatisé",
+        description: "Créateur de portfolio en ligne automatisé",
         href: "https://github.com/wav-rover/brightr",
         image: "/images/Brightr.png",
     },
@@ -63,7 +64,7 @@ const projects = [
     {
         title: "Mira",
         status: "Fini",
-        description: "Outils de gestion de projet type trello",
+        description: "Outils de gestion de projet type Trello",
         href: "https://github.com/Tristan-stack/Mira-Lab",
         image: "/images/Mira.png",
     },
@@ -95,11 +96,13 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
         if (!isOpen) setHoverTarget(null);
     }, [isOpen]);
 
-    return (
+    if (typeof window === "undefined") return null;
+
+    return createPortal(
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                className="fixed inset-0 z-[10000] flex flex-col justify-between p-8"
+                    className="fixed inset-0 z-[10000] flex flex-col justify-between p-8"
                     style={{
                         backgroundColor: "rgba(255, 255, 255, 0.97)",
                         backdropFilter: "blur(12px)",
@@ -110,8 +113,6 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                     exit="exit"
                     variants={slideDownVariants}
                 >
-              
-
                     {/* Header */}
                     <div className="flex justify-between items-start">
                         <span className="text-2xl font-bold">
@@ -152,8 +153,8 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                         <button
                                             onClick={onClose}
                                             className={`text-[6vw] font-black uppercase leading-none transition-colors duration-300 ${hoverTarget === text.toLowerCase()
-                                                ? "text-blue-600"
-                                                : "hover:text-blue-600 text-black"
+                                                    ? "text-blue-600"
+                                                    : "hover:text-blue-600 text-black"
                                                 }`}
                                         >
                                             {text}
@@ -242,6 +243,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                     </footer>
                 </motion.div>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.getElementById("portal-root")!
     );
 }
