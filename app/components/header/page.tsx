@@ -1,45 +1,37 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import MegaMenu from "@/app/components/ui/MegaMenu";
+import { motion } from "framer-motion";
+import useScrollDirection from "@/app/hooks/useScrollDirection";
 
-export default function Home() {
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const scrollDirection = useScrollDirection();
+
   return (
-    <main className="w-full min-h-screen bg-white flex flex-col justify-between">
-      {/* Header */}
-      <header className="flex justify-between items-center px-8 pt-8 w-full">
-        <span className="font-bold text-2xl">
+    <>
+      <motion.header
+        className="fixed top-0 left-0 w-full flex justify-between items-center px-8 pb-4 pt-4 bg-white border-b-2 border-black z-50 transition-transform duration-500"
+        animate={{ y: scrollDirection === "down" && !menuOpen ? -100 : 0 }}
+      >
+        <span className="text-black font-bold text-2xl">
           Tristan Gerber<span className="text-blue-600">.</span>
         </span>
-        <nav className="space-x-8 text-xs tracking-widest">
-          <a href="#" className="hover:underline">ABOUT</a>
-          <a href="#" className="hover:underline">BLOG</a>
-          <a href="#" className="hover:underline">BOOKS</a>
+
+        <nav className="text-black space-x-8 text-xs tracking-widest flex items-center">
+          <motion.button
+            onClick={() => setMenuOpen(true)}
+            whileHover={{ y: -2, scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="uppercase tracking-widest text-xs text-black px-4 py-2 bg-white"
+          >
+            MENU
+          </motion.button>
         </nav>
-      </header>
+      </motion.header>
 
-      {/* Main Title */}
-      <section className="flex-1 flex flex-col items-center justify-center relative w-full">
-        <div className="absolute right-24 top-12 text-xs tracking-widest text-gray-700">[2025]</div>
-        <div>
-
-        <h1 className="text-[10vw] text-black font-black leading-none w-full text-left">
-          Full Stack <span className="inline-block align-middle w-90 h-8 bg-black ml-4" />
-        </h1>
-        <div className="flex items-center mt-2 justify-start w-full">
-                      <span className="custom-font text-[12vw]  text-black leading-none">Developper</span>
-          <span className="ml-4 w-6 h-6 rounded bg-blue-800 inline-block custom-font text-[2vw] align-bottom" />
-        </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="flex justify-between items-end px-8 pb-6 text-xs text-black w-full">
-        <span>[CURRENTLY IN STRASBOURG]</span>
-        <div className="text-right">
-          <div>Tristan Gerber</div>
-          <div>
-            building website that just <a href="#" className="text-blue-600 underline">fits</a>.
-          </div>
-        </div>
-      </footer>
-    </main>
+      {/* Le MegaMenu doit être affiché à part pour ne pas être contenu dans le header */}
+      <MegaMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+    </>
   );
 }
