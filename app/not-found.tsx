@@ -26,7 +26,7 @@ export default function NotFoundPage() {
         transition={{ delay: 0.4, duration: 0.6 }}
         className="z-10 absolute bottom-24 text-center text-sm md:text-base tracking-widest text-neutral-400"
       >
-        Cette page s'est perdue dans l'espace numérique.
+        Cette page s&apos;est perdue dans l&apos;espace num&eacute;rique.
       </motion.p>
 
       {/* Bouton retour */}
@@ -40,7 +40,7 @@ export default function NotFoundPage() {
           href="/"
           className="text-xs uppercase tracking-widest border border-white px-6 py-3 hover:bg-white hover:text-black transition-all"
         >
-          Retour à l'accueil
+          Retour &agrave; l&apos;accueil
         </Link>
       </motion.div>
     </main>
