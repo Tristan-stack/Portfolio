@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { z } from "zod";
 import { contactSchema } from "@/lib/contactSchema";
 
 const Silk = dynamic(() => import("@/app/components/ui/Silk"), { ssr: false });
@@ -54,10 +53,15 @@ export default function Footer() {
 
     return (
         <footer className="relative w-full h-[700px] overflow-hidden text-white z-90">
-            {/* Fond animé */}
             <div className="absolute inset-0 -z-10">
                 {mounted && (
-                    <Silk speed={8} scale={1} color="#1E2957" noiseIntensity={3.5} rotation={0} />
+                    <Silk
+                        speed={8}
+                        scale={1}
+                        color="#1E2957"
+                        noiseIntensity={3.5}
+                        rotation={0}
+                    />
                 )}
             </div>
 
@@ -101,12 +105,8 @@ export default function Footer() {
                             {sending ? "Sending..." : "Send ↗"}
                         </button>
                         {error && <p className="text-red-400 mt-1">{error}</p>}
-                        {status === "success" && (
-                            <p className="text-green-400 mt-1">Message sent successfully.</p>
-                        )}
-                        {status === "error" && (
-                            <p className="text-red-400 mt-1">Something went wrong. Try again.</p>
-                        )}
+                        {status === "success" && <p className="text-green-400 mt-1">Message sent successfully.</p>}
+                        {status === "error" && <p className="text-red-400 mt-1">Something went wrong. Try again.</p>}
                     </form>
                 </div>
 

@@ -13,6 +13,8 @@
     "@react-three/fiber": "^9.1.2",
     "@react-three/postprocessing": "^3.0.4",
     "@splinetool/react-spline": "^4.0.0",
+    "@upstash/ratelimit": "^2.0.5",
+    "@upstash/redis": "^1.35.0",
     "framer-motion": "^12.16.0",
     "gsap": "^3.13.0",
     "next": "15.3.3",
