@@ -52,7 +52,6 @@ Bienvenue sur mon portfolio, développé pour refléter mon identité de dévelo
 
 - **Rate limiting Redis** : bloque les abus de l'API contact
 - **Validation Zod** : empêche les entrées invalides dès l’origine
-- **reCAPTCHA v3** : protection anti-spam invisible pour l’utilisateur
 
 ---
 
