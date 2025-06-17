@@ -1,12 +1,12 @@
+"use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import Particles from "@/app/components/ui/Particles";
 import ScrambledText from "@/app/components/ui/ScrambledText";
 import Waves from "@/app/components/ui/Waves";
 import skills from "@/app/data/skills.json";
 import LazySplineWrapper from "@/app/components/ui/LazySplineWrapper";
-import useIsMobile from "@/app/hooks/useIsMobile"; // ⬅️ à créer
+import useIsMobile from "@/app/hooks/useIsMobile";
 
 const container = {
     hidden: {},
@@ -86,7 +86,7 @@ export default function AboutSection() {
                             speed={0.5}
                             scrambleChars=".:"
                         >
-                            I'm Tristan Gerber, a web developer based in Strasbourg. I
+                            I&apos;m Tristan Gerber, a web developer based in Strasbourg. I
                             combine technical skills and creativity. As a passionate athlete
                             and hardware enthusiast, I love pushing boundaries—both on screen
                             and beyond.

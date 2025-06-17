@@ -3,8 +3,8 @@ import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 
-// Import dynamique sans SSR
-const Spline = dynamic(() => import("@splinetool/react-spline"), {
+// ✅ Import de ton client wrapper (solution clean)
+const Spline = dynamic(() => import("./SplineClient"), {
   ssr: false,
   loading: () => null,
 });
@@ -17,9 +17,7 @@ export default function LazySplineWrapper() {
   });
 
   useEffect(() => {
-    if (inView) {
-      setIsMounted(true);
-    }
+    if (inView) setIsMounted(true);
   }, [inView]);
 
   return (

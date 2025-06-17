@@ -77,13 +77,16 @@ const projects = [
     },
 ];
 
+const sections = ["Projects", "About", "Contact"] as const;
+type Section = Lowercase<typeof sections[number]>;
+
 type MegaMenuProps = {
     isOpen: boolean;
     onClose: () => void;
 };
 
 export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
-    const [hoverTarget, setHoverTarget] = useState<"projects" | "about" | "contact" | null>(null);
+    const [hoverTarget, setHoverTarget] = useState<Section | null>(null);
 
     useEffect(() => {
         document.body.style.overflow = isOpen ? "hidden" : "";
@@ -144,11 +147,11 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                 animate="visible"
                                 className="space-y-6"
                             >
-                                {["Projects", "About", "Contact"].map((text) => (
+                                {sections.map((text) => (
                                     <motion.li
                                         key={text}
                                         variants={linkItemVariants}
-                                        onMouseEnter={() => setHoverTarget(text.toLowerCase() as any)}
+                                        onMouseEnter={() => setHoverTarget(text.toLowerCase() as Section)}
                                     >
                                         <button
                                             onClick={() => {
@@ -165,7 +168,6 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                         >
                                             {text}
                                         </button>
-
                                     </motion.li>
                                 ))}
                             </motion.ul>
@@ -195,16 +197,10 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                                 <div className="flex items-center gap-2">
                                                     <h3 className="text-black font-bold text-base">{project.title}</h3>
                                                     {project.status === "Fini" && (
-                                                        <span
-                                                            className="inline-block w-2.5 h-2.5 rounded-full bg-green-500"
-                                                            title="Fini"
-                                                        />
+                                                        <span className="inline-block w-2.5 h-2.5 rounded-full bg-green-500" title="Fini" />
                                                     )}
                                                     {project.status === "En cours" && (
-                                                        <span
-                                                            className="inline-block w-2.5 h-2.5 rounded-full bg-orange-400"
-                                                            title="En cours"
-                                                        />
+                                                        <span className="inline-block w-2.5 h-2.5 rounded-full bg-orange-400" title="En cours" />
                                                     )}
                                                 </div>
                                                 <p className="text-sm text-gray-700 mt-1">{project.description}</p>
