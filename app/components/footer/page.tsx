@@ -2,15 +2,16 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { z } from "zod";
+import { contactSchema } from "@/lib/contactSchema";
 
-const Silk = dynamic(() => import("@/app/components/ui/Silk"), {
-    ssr: false,
-});
+const Silk = dynamic(() => import("@/app/components/ui/Silk"), { ssr: false });
 
 export default function Footer() {
     const [mounted, setMounted] = useState(false);
     const [sending, setSending] = useState(false);
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => setMounted(true), []);
 
@@ -20,7 +21,15 @@ export default function Footer() {
         const email = form.email.value;
         const message = form.message.value;
 
+        const validation = contactSchema.safeParse({ email, message });
+
+        if (!validation.success) {
+            setError("Veuillez entrer un email et un message valides.");
+            return;
+        }
+
         setSending(true);
+        setError(null);
         setStatus("idle");
 
         try {
@@ -48,27 +57,15 @@ export default function Footer() {
             {/* Fond animé */}
             <div className="absolute inset-0 -z-10">
                 {mounted && (
-                    <Silk
-                        speed={8}
-                        scale={1}
-                        color="#1E2957"
-                        noiseIntensity={3.5}
-                        rotation={0}
-                    />
+                    <Silk speed={8} scale={1} color="#1E2957" noiseIntensity={3.5} rotation={0} />
                 )}
             </div>
 
-            {/* Contenu */}
             <div className="w-full h-full px-8 py-12 flex flex-col justify-between relative z-10">
-                {/* Titre */}
                 <h2 className="text-6xl md:text-7xl font-bold mb-8">Stay In Touch.</h2>
-
-                {/* Ligne de séparation */}
                 <div className="border-t border-white w-full mb-6" />
 
-                {/* Contenu principal */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end w-full gap-8">
-                    {/* Infos de contact */}
                     <div className="text-xs space-y-2 font-mono uppercase">
                         <a href="mailto:tristan.gerber@email.com" className="hover:underline block">
                             tristan.gerber@email.com ↗
@@ -81,11 +78,7 @@ export default function Footer() {
                         </a>
                     </div>
 
-                    {/* Formulaire de contact */}
-                    <form
-                        onSubmit={handleSubmit}
-                        className="text-xs space-y-2 w-full max-w-sm font-mono uppercase"
-                    >
+                    <form onSubmit={handleSubmit} className="text-xs space-y-2 w-full max-w-sm font-mono uppercase">
                         <input
                             name="email"
                             type="email"
@@ -107,6 +100,7 @@ export default function Footer() {
                         >
                             {sending ? "Sending..." : "Send ↗"}
                         </button>
+                        {error && <p className="text-red-400 mt-1">{error}</p>}
                         {status === "success" && (
                             <p className="text-green-400 mt-1">Message sent successfully.</p>
                         )}
@@ -116,7 +110,6 @@ export default function Footer() {
                     </form>
                 </div>
 
-                {/* Crédit en bas */}
                 <div className="mt-8 text-[10px] text-right uppercase font-mono text-white">
                     <div className="mb-1">© 2025 Tristan Gerber</div>
                     <div>DESIGNED AND DEVELOPED BY TRISTAN GERBER.</div>
