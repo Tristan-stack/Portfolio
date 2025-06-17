@@ -151,14 +151,21 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                         onMouseEnter={() => setHoverTarget(text.toLowerCase() as any)}
                                     >
                                         <button
-                                            onClick={onClose}
+                                            onClick={() => {
+                                                const section = document.getElementById(text.toLowerCase());
+                                                if (section) {
+                                                    section.scrollIntoView({ behavior: "smooth" });
+                                                }
+                                                onClose();
+                                            }}
                                             className={`text-[6vw] font-black uppercase leading-none transition-colors duration-300 ${hoverTarget === text.toLowerCase()
-                                                    ? "text-blue-600"
-                                                    : "hover:text-blue-600 text-black"
+                                                ? "text-blue-600"
+                                                : "hover:text-blue-600 text-black"
                                                 }`}
                                         >
                                             {text}
                                         </button>
+
                                     </motion.li>
                                 ))}
                             </motion.ul>

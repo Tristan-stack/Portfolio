@@ -17,7 +17,7 @@ const container = {
 
 export default function ProjectsSection() {
     return (
-        <section className="w-full min-h-[80vh] bg-white pt-32 px-8 py-62 border-black ">
+        <section id="projects" className="w-full min-h-[80vh] bg-white pt-32 px-8 py-62 border-black ">
             <motion.h2
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}

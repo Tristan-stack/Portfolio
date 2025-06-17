@@ -52,7 +52,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="relative w-full h-[700px] overflow-hidden text-white z-90">
+        <footer id="contact" className="relative w-full h-[700px] overflow-hidden text-white z-90">
             <div className="absolute inset-0 -z-10">
                 {mounted && (
                     <Silk
