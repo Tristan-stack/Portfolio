@@ -1,0 +1,23 @@
+export const techExtensions: Record<string, "svg" | "png"> = {
+    nextjs: "svg",
+    supabase: "png",
+    tailwind: "svg",
+    prisma: "svg",
+    nodejs: "png",
+    react: "svg",
+    shadcn: "png",
+    cheerio: "png",
+    puppeteer: "png",
+    nextauth: "png",
+    aceternity: "png",
+    socketio: "svg",
+    laravel: "svg",
+    symfony: "svg",
+    twig: "svg",
+    mysql: "svg",
+    inertia: "png",
+    pusher: "svg",
+    trpc: "svg",
+    gemini: "png",
+};
+  

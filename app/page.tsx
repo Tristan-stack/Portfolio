@@ -3,6 +3,9 @@ import Header from "@/app/components/header/page";
 import AboutSection from "@/app/components/about/page";
 import OverlayAnimation from "@/app/components/ui/OverlayAnimation";
 import useScrollDirection from "@/app/hooks/useScrollDirection"; 
+import TextPressure from "@/app/components/ui/TextPressure";
+import ProjectsSection from "./components/projects/page";
+import Footer from "./components/footer/page";
 
 export default function Home() {
   const scrollDirection = useScrollDirection();
@@ -25,9 +28,18 @@ export default function Home() {
           <div className="absolute right-24 top-12 text-xs tracking-widest text-gray-700">
             [2025]
           </div>
-          <h1 className="text-[10vw] text-black font-black leading-none text-left w-full">
-            Full Stack <span className="inline-block align-middle w-90 h-8 bg-black ml-4" />
-          </h1>
+          <TextPressure
+            text="Full Stack"
+            flex={true}
+            alpha={false}
+            stroke={false}
+            width={true}
+            weight={true}
+            italic={true}
+            textColor="#000000"
+            strokeColor="#ff0000"
+            minFontSize={36}
+          />
           <div className="flex items-center mt-2 justify-start w-full">
             <span className="custom-font text-[12vw] text-black leading-none">
               Developper
@@ -52,6 +64,8 @@ export default function Home() {
       </section>
 
       <AboutSection />
+      <ProjectsSection />
+      <Footer />
     </>
   );
 }

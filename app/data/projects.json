@@ -1,0 +1,69 @@
+[
+    {
+        "title": "Brightr Web Builder",
+        "description": "Platform to turn Behance profil into deployable portfolio websites with Supabase and Next.js.",
+        "link": "https://brightr.app",
+        "tech": [
+            "nextjs",
+            "nextauth",
+            "prisma",
+            "trpc",
+            "tailwind",
+            "shadcn",
+            "cheerio",
+            "puppeteer"
+        ]
+    },
+    {
+        "title": "Mira Lab ",
+        "description": "Collaborative project management app with boards, tasks, dependencies, real-time updates and integrated chat.",
+        "link": "#",
+        "tech": [
+            "laravel",
+            "react",
+            "pusher",
+            "shadcn",
+            "aceternity",
+            "mysql"
+        ]
+    },
+    {
+        "title": "Ampere",
+        "description": "Real-time energy monitoring dashboard with data visualization, access control, weather integration and chat.",
+        "link": "#",
+        "tech": [
+            "nextjs",
+            "nextauth",
+            "prisma",
+            "trpc",
+            "tailwind",
+            "socketio",
+            "shadcn"
+        ]
+    },
+    {
+        "title": "Code Link",
+        "description": "Git repository manager with AI-generated commit summaries and project overviews using Google Gemini.",
+        "link": "#",
+        "tech": [
+            "nextjs",
+            "nextauth",
+            "prisma",
+            "trpc",
+            "tailwind",
+            "shadcn",
+            "gemini"
+        ]
+    },
+    {
+        "title": "Sirius",
+        "description": "Web app to manage student skill evaluation during internships or apprenticeships with admin tools and dashboards.",
+        "link": "#",
+        "tech": [
+            "symfony",
+            "tailwind",
+            "twig",
+            "mysql"
+        ]
+    }
+]

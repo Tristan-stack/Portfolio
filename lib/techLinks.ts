@@ -1,0 +1,23 @@
+export const techLinks: Record<string, string> = {
+    nextjs: "https://nextjs.org/docs",
+    supabase: "https://supabase.com/docs",
+    tailwind: "https://tailwindcss.com/docs",
+    prisma: "https://www.prisma.io/docs",
+    nodejs: "https://nodejs.org/en/docs",
+    react: "https://react.dev/learn",
+    shadcn: "https://ui.shadcn.dev/docs",
+    cheerio: "https://cheerio.js.org/docs",
+    puppeteer: "https://pptr.dev/",
+    nextauth: "https://next-auth.js.org/getting-started/introduction",
+    aceternity: "https://ui.aceternity.com/",
+    socketio: "https://socket.io/docs/v4/",
+    laravel: "https://laravel.com/docs",
+    symfony: "https://symfony.com/doc/current/index.html",
+    twig: "https://twig.symfony.com/doc/3.x/",
+    mysql: "https://dev.mysql.com/doc/",
+    inertia: "https://inertiajs.com/",
+    pusher: "https://pusher.com/docs/",
+    trpc: "https://trpc.io/docs",
+    gemini: "https://ai.google.dev/gemini-api/docs",
+};
+  

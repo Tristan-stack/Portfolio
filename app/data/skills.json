@@ -1,0 +1,16 @@
+{
+    "frontend": [
+        "HTML / CSS / Tailwind CSS",
+        "JavaScript / TypeScript",
+        "Vue.js",
+        "React / Next.js",
+        "Framer Motion"
+    ],
+    "backend": [
+        "Node.js",
+        "Express",
+        "Symfony / Laravel",
+        "MongoDB / PostgreSQL / Prisma",
+        "API REST"
+    ]
+}

@@ -115,7 +115,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 >
                     {/* Header */}
                     <div className="flex justify-between items-start">
-                        <span className="text-2xl font-bold">
+                        <span className="text-2xl text-black font-bold">
                             Tristan Gerber<span className="text-blue-600">.</span>
                         </span>
                         <motion.button
