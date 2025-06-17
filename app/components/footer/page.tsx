@@ -9,7 +9,39 @@ const Silk = dynamic(() => import("@/app/components/ui/Silk"), {
 
 export default function Footer() {
     const [mounted, setMounted] = useState(false);
+    const [sending, setSending] = useState(false);
+    const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+
     useEffect(() => setMounted(true), []);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const email = form.email.value;
+        const message = form.message.value;
+
+        setSending(true);
+        setStatus("idle");
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, message }),
+            });
+
+            if (res.ok) {
+                setStatus("success");
+                form.reset();
+            } else {
+                setStatus("error");
+            }
+        } catch {
+            setStatus("error");
+        } finally {
+            setSending(false);
+        }
+    };
 
     return (
         <footer className="relative w-full h-[700px] overflow-hidden text-white z-90">
@@ -50,23 +82,37 @@ export default function Footer() {
                     </div>
 
                     {/* Formulaire de contact */}
-                    <form className="text-xs space-y-2 w-full max-w-sm font-mono uppercase">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="text-xs space-y-2 w-full max-w-sm font-mono uppercase"
+                    >
                         <input
+                            name="email"
                             type="email"
+                            required
                             placeholder="Your email"
                             className="w-full bg-white text-black px-3 py-2 rounded-sm placeholder:text-black/50"
                         />
                         <textarea
+                            name="message"
+                            required
                             placeholder="Your message"
                             rows={3}
                             className="w-full bg-white text-black px-3 py-2 rounded-sm placeholder:text-black/50 resize-none"
                         />
                         <button
                             type="submit"
-                            className="w-full border border-white py-2 px-4 hover:bg-white hover:text-black transition-colors"
+                            disabled={sending}
+                            className="w-full border border-white py-2 px-4 hover:bg-white hover:text-black transition-colors disabled:opacity-50"
                         >
-                            Send ↗
+                            {sending ? "Sending..." : "Send ↗"}
                         </button>
+                        {status === "success" && (
+                            <p className="text-green-400 mt-1">Message sent successfully.</p>
+                        )}
+                        {status === "error" && (
+                            <p className="text-red-400 mt-1">Something went wrong. Try again.</p>
+                        )}
                     </form>
                 </div>
 
