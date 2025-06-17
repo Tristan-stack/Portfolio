@@ -17,7 +17,6 @@ export const metadata = {
   description: "Full-stack developer based in Strasbourg. Building high-performance, tailor-made websites.",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
