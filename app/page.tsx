@@ -6,9 +6,11 @@ import useScrollDirection from "@/app/hooks/useScrollDirection";
 import TextPressure from "@/app/components/ui/TextPressure";
 import ProjectsSection from "./components/projects/page";
 import Footer from "./components/footer/page";
+import useInViewHero from "@/app/hooks/useInViewHero";
 
 export default function Home() {
   const scrollDirection = useScrollDirection();
+const isHeroVisible = useInViewHero();
 
   return (
     <>
@@ -16,14 +18,16 @@ export default function Home() {
 
       {/* Header avec transition smooth */}
       <div
-        className={`fixed top-0 left-0 w-full z-50 transition-transform duration-500 ${scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
-          }`}
-      >
-        <Header />
-      </div>
+      className={`fixed top-0 left-0 w-full z-50 transition-transform duration-500 ${
+        !isHeroVisible && scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
+      <Header />
+    </div>
+
 
       {/* Section d’accueil */}
-      <section className="w-full min-h-screen bg-white pt-24 flex flex-col justify-between">
+      <section id="hero" className="w-full min-h-screen bg-white pt-24 flex flex-col justify-between">
         <div className="flex-1 flex flex-col items-center justify-center px-8 relative">
           <div className="absolute right-24 top-12 text-xs tracking-widest text-gray-700">
             [2025]

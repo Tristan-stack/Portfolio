@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface TextPressureProps {
     text?: string;
@@ -82,7 +82,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
         };
     }, []);
 
-    const setSize = () => {
+    const setSize = useCallback(() => {
         if (!containerRef.current || !titleRef.current) return;
 
         const { width: containerW, height: containerH } = containerRef.current.getBoundingClientRect();
@@ -104,13 +104,13 @@ const TextPressure: React.FC<TextPressureProps> = ({
                 setLineHeight(yRatio);
             }
         });
-    };
+    }, [chars.length, minFontSize, scale]);
 
     useEffect(() => {
         setSize();
         window.addEventListener('resize', setSize);
         return () => window.removeEventListener('resize', setSize);
-    }, [scale, text]);
+    }, [setSize]);
 
     useEffect(() => {
         let rafId: number;
@@ -161,34 +161,33 @@ const TextPressure: React.FC<TextPressureProps> = ({
             className="relative w-full h-full overflow-hidden bg-transparent"
         >
             <style>{`
-        @font-face {
-          font-family: '${fontFamily}';
-          src: url('${fontUrl}');
-          font-style: normal;
-        }
-        .stroke span {
-          position: relative;
-          color: ${textColor};
-        }
-        .stroke span::after {
-          content: attr(data-char);
-          position: absolute;
-          left: 0;
-          top: 0;
-          color: transparent;
-          z-index: -1;
-          -webkit-text-stroke-width: ${strokeWidth}px;
-          -webkit-text-stroke-color: ${strokeColor};
-        }
-      `}</style>
+                @font-face {
+                    font-family: '${fontFamily}';
+                    src: url('${fontUrl}');
+                    font-style: normal;
+                }
+                .stroke span {
+                    position: relative;
+                    color: ${textColor};
+                }
+                .stroke span::after {
+                    content: attr(data-char);
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    color: transparent;
+                    z-index: -1;
+                    -webkit-text-stroke-width: ${strokeWidth}px;
+                    -webkit-text-stroke-color: ${strokeColor};
+                }
+            `}</style>
 
             <h1
                 ref={titleRef}
-                className={`text-pressure-title ${className} ${flex ? 'flex justify-between' : ''
-                    } ${stroke ? 'stroke' : ''} uppercase text-center`}
+                className={`text-pressure-title ${className} ${flex ? 'flex justify-between' : ''} ${stroke ? 'stroke' : ''} uppercase text-center`}
                 style={{
                     fontFamily,
-                    fontSize: fontSize,
+                    fontSize,
                     lineHeight,
                     transform: `scale(1, ${scaleY})`,
                     transformOrigin: 'center top',
@@ -200,7 +199,9 @@ const TextPressure: React.FC<TextPressureProps> = ({
                 {chars.map((char, i) => (
                     <span
                         key={i}
-                        ref={(el) => (spansRef.current[i] = el)}
+                        ref={(el) => {
+                        spansRef.current[i] = el;
+                        }}
                         data-char={char}
                         className="inline-block"
                     >

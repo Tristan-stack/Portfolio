@@ -13,14 +13,14 @@ export async function POST(req: Request) {
         return new Response("Trop de requêtes, réessaie plus tard.", { status: 429 });
     }
 
-    let body: { email?: string; message?: string; recaptchaToken?: string };
+    let body: { email?: string; message?: string; };
     try {
         body = await req.json();
     } catch {
         return new Response("Requête invalide.", { status: 400 });
     }
 
-    const { email, message, recaptchaToken } = body;
+    const { email, message} = body;
 
     // Validation Zod
     const validation = contactSchema.safeParse({ email, message });

@@ -72,12 +72,12 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end w-full gap-8">
                     <div className="text-xs space-y-2 font-mono uppercase">
                         <a href="mailto:tristan.gerber@email.com" className="hover:underline block">
-                            tristan.gerber@email.com ↗
+                            tristan.gerber00@gmail.com ↗
                         </a>
-                        <a href="https://github.com/yourprofile" target="_blank" className="hover:underline block">
+                        <a href="https://github.com/Tristan-stack" target="_blank" className="hover:underline block">
                             GitHub ↗
                         </a>
-                        <a href="https://linkedin.com/in/yourprofile" target="_blank" className="hover:underline block">
+                        <a href="https://www.linkedin.com/in/tristan-gerber-804b8b268/" target="_blank" className="hover:underline block">
                             LinkedIn ↗
                         </a>
                     </div>
