@@ -2,7 +2,7 @@
     {
         "title": "Brightr Web Builder",
         "description": "Platform to turn Behance profil into deployable portfolio websites with Supabase and Next.js.",
-        "link": "https://brightr.app",
+        "link": "https://github.com/wav-rover/brightr",
         "tech": [
             "nextjs",
             "nextauth",
@@ -17,7 +17,7 @@
     {
         "title": "Mira Lab ",
         "description": "Collaborative project management app with boards, tasks, dependencies, real-time updates and integrated chat.",
-        "link": "#",
+        "link": "https://github.com/Tristan-stack/Mira-Lab",
         "tech": [
             "laravel",
             "react",
@@ -30,7 +30,7 @@
     {
         "title": "Ampere",
         "description": "Real-time energy monitoring dashboard with data visualization, access control, weather integration and chat.",
-        "link": "#",
+        "link": "https://github.com/Tristan-stack/Ampere",
         "tech": [
             "nextjs",
             "nextauth",
@@ -44,7 +44,7 @@
     {
         "title": "Code Link",
         "description": "Git repository manager with AI-generated commit summaries and project overviews using Google Gemini.",
-        "link": "#",
+        "link": "ttps://github.com/Tristan-stack/CodeLink",
         "tech": [
             "nextjs",
             "nextauth",
